@@ -1,0 +1,6 @@
+PyAudio:
+https://pypi.org/project/PyAudio/
+Voice Recognition:
+https://pypi.org/project/SpeechRecognition/
+Pip:
+https://pypi.org/project/pip/
