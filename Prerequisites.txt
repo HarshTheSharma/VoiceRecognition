@@ -1,3 +1,5 @@
+Python 3.8:
+https://www.python.org/downloads/release/python-380/
 PyAudio:
 https://pypi.org/project/PyAudio/
 Voice Recognition:
