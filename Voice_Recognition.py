@@ -1,6 +1,8 @@
+#imports
 import speech_recognition as sr
 
 def VoiceRecog():
+    #read and recognize speech
     def recognize_speech_from_mic(recognizer, microphone):
 
         if not isinstance(recognizer, sr.Recognizer):
@@ -13,7 +15,7 @@ def VoiceRecog():
             recognizer.adjust_for_ambient_noise(source) # #  analyze the audio source for 1 second
             audio = recognizer.listen(source)
 
-        # Respond
+        #respond
         response = {
             "success": True,
             "error": None,
