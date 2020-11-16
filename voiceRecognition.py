@@ -1,45 +1,17 @@
 #imports
 import speech_recognition as sr
 
-def VoiceRecog():
-    #read and recognize speech
-    def recognize_speech_from_mic(recognizer, microphone):
+#variables
+recognizer = sr.Recognizer()
 
-        if not isinstance(recognizer, sr.Recognizer):
-            raise TypeError("`recognizer` must be `Recognizer` instance")
 
-        if not isinstance(microphone, sr.Microphone):
-            raise TypeError("`microphone` must be `Microphone` instance")
-
-        with microphone as source:
-            recognizer.adjust_for_ambient_noise(source) # #  analyze the audio source for 1 second
-            audio = recognizer.listen(source)
-
-        #respond
-        response = {
-            "success": True,
-            "error": None,
-            "transcription": None
-        }
-
+#A loop sending input to the API then printing the return
+with sr.Microphone() as source:
+    print('Please start speaking:\n')
+    while True:
+        audio_input = recognizer.listen(source)
         try:
-            response["transcription"] = recognizer.recognize_google(audio)
-        except sr.RequestError:
-            # API was unreachable
-            response["success"] = False
-            response["error"] = "API unavailable/unresponsive"
-        except sr.UnknownValueError:
-            response["error"] = "Unable to recognize speech"
-
-        return response
-
-    if __name__ == "__main__":
-        recognizer = sr.Recognizer()
-        mic = sr.Microphone(device_index=1)
-        response = recognize_speech_from_mic(recognizer, mic)
-        print('\nSuccess : {}\nError   : {}\n\nText from Speech\n{}\n\n{}' \
-              .format(response['success'],
-                      response['error'],
-                      '-'*17,
-                      response['transcription']))
-VoiceRecog()
+            text = recognizer.recognize_google(audio_input)
+            print(str(text))
+        except Exception as e:
+            print()
